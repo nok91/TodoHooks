@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useTaskItem } from './hooks';
+import { useCountRenders } from '../../utils';
 
 const propTypes = {
     item: PropTypes.shape({
@@ -14,15 +14,12 @@ const defaultProps = {
     idx: 0
 };
 
-const TaskItem = React.memo(({ item, idx }) => {
-    const { onClickHandler } = useTaskItem();
-    const eventsHandler = (event) => onClickHandler({event, idx});
-
+const TaskItem = React.memo(({ item, idx, eventsHandler }) => {
     return (
         <div
             className={`task-item ${ item.completed ? ' line-through ' : '' }`}
-            onClick={eventsHandler}
-            onKeyDown={eventsHandler}  
+            onClick={(event) => eventsHandler({ event, idx })}
+            onKeyDown={(event) => eventsHandler({ event, idx })}  
             aria-label={item.text}
             tabIndex="0"
             role="checkbox"
