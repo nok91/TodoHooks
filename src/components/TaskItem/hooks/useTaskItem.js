@@ -6,8 +6,12 @@ const defaultProps = {};
 
 const useTaskItem = () => {
     const context = useContext(TodoListContext);
-    const onClickHandler = (idx) => {
-        context.tickText(idx)
+    const onClickHandler = ({event, idx}) => {
+        const { keyCode } = event;
+        if (keyCode === true || keyCode === 13) {
+            context.tickText(idx)
+        }
+
     };
 
     return {
