@@ -1,0 +1,23 @@
+.input-form__container {
+    width: 100%;
+}
+
+.input-form__container  form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-flow: row;
+}
+
+.input-form__container  input {
+    border: 1px solid #333333;
+    width: 90%;
+    max-width: 500px;
+    padding: 10px;
+    transition: all 0.4s linear;
+}
+
+.input-form__container input:hover {
+    border: 2px solid black;
+}
+
