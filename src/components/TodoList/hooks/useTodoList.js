@@ -1,4 +1,4 @@
-import {useState, useContext } from 'react';
+import { useContext } from 'react';
 import PropTypes from 'prop-types';
 import TodoListContext from '../../../context/tasks-context';
 
@@ -11,20 +11,7 @@ const defaultProps = {
 
 const useTodoList = (initValue) => {
     const context = useContext(TodoListContext);
-    const [getText, setText] = useState(initValue);
-
-    const onSubmitHandler = (e) => {
-        e.preventDefault();
-        context.addTask(getText);
-        setText("");
-    };
-
-    const onChangeHandler = (e) => {
-        e.preventDefault();
-        setText(e.target.value);
-    }
-
-    return { getText, setText, context, onSubmitHandler, onChangeHandler};
+    return { context };
 };
 
 useTodoList.displayName = 'useTodoList';

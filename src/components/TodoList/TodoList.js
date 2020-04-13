@@ -1,30 +1,24 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { TaskItem } from '../TaskItem';
 import { useTodoList } from './hooks';
-import { UseFocus } from '../Hooks/UseFocus';
-
-import './styles/todoList.css';
+import { InputForm } from '../InputForm';
+import { useFocus } from '../../utils';
 
 const TodoList = () => {
-    const inputRef = useRef();
-    const { getText, context, onSubmitHandler, onChangeHandler} = useTodoList('');
-    UseFocus();
+    const { context } = useTodoList('');
+    useFocus();
+
+    const renderList = (item, idx) => (<TaskItem idx={idx} key={idx} item={item} />);
 
     return (
         <div className="todo-list__container wrapper">
             <h1>Checklist</h1>
-            <form onSubmit={onSubmitHandler}>
-                <input
-                    type="text"
-                    ref={inputRef}
-                    value={getText}
-                    onChange={onChangeHandler}
-                />
-            </form>
 
-            { context.tasks.map((item, idx) => 
-                <TaskItem idx={idx} key={idx} item={item} />
-            )}
+            <InputForm />
+
+            <div className="check-list__container" role="list" aria-label="check list">
+                { context.tasks.map(renderList) }
+            </div>
         </div>
     );
 };
