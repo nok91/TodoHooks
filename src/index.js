@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
+import GlobalState from './context/GlobalContext';
+import { TodoList } from './components';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <GlobalState>
+    <TodoList />
+  </GlobalState>
+  ,
   document.getElementById('root')
 );
 
