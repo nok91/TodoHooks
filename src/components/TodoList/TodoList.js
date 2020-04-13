@@ -11,12 +11,12 @@ const TodoList = () => {
     const renderList = (item, idx) => (<TaskItem idx={idx} key={idx} item={item} />);
 
     return (
-        <div className="todo-list__container wrapper">
-            <h1>Checklist</h1>
+        <div className="todo-list__container wrapper" id="root">
+            <h1 id="id-group-label">Checklist</h1>
 
             <InputForm />
 
-            <div className="check-list__container" role="list" aria-label="check list">
+            <div className="check-list__container" role="group" aria-labelledby="id-group-label">
                 { context.tasks.map(renderList) }
             </div>
         </div>
