@@ -1,0 +1,13 @@
+
+body *:focus,
+body input:focus,
+body button:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+body.focusStylesOn *:focus,
+body.focusStylesOn input:focus,
+body.focusStylesOn button:focus {
+    box-shadow: 0 0 0 0px #fff, 0 0 0 1px #4a90e2, 0 0 2px 2px #4a90e2;
+}
