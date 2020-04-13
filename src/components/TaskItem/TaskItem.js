@@ -19,13 +19,22 @@ const TaskItem = ({ item, idx }) => {
 
     return (
         <div
-            key={idx}
-            style={{
-                textDecoration: item.completed ? "line-through" : ""
-            }}
-            onClick={() => onClickHandler(idx)}
+            className={`task-item ${ item.completed ? 'line-through' : '' }`}
+            onClick={(event) => onClickHandler({event, idx})}
+            onKeyDown={(event) => onClickHandler({event, idx})}  
+            aria-label={item.text}
+            tabIndex="0"
+            role="checkbox"
+            aria-checked={item.completed}
         >
-            {item.text}
+            <input type="checkbox" id={`chk${idx}-label`} tabIndex="-1" aria-hidden="true" />
+            <label    
+                htmlFor={`chk${idx}-label`}
+                tabIndex="-1"
+                aria-hidden="true"
+            >
+                {item.text}
+            </label>
         </div>
     );
 };

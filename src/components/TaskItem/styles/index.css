@@ -1,0 +1,50 @@
+.task-item {
+    position: relative;
+    text-transform: capitalize;
+    border-bottom: 1px solid #eaeaea;
+    display: block;
+    padding-left: 40px;
+}
+
+.task-item label {
+    display: block;
+    padding: 15px 0px;
+}
+
+.task-item input[type="checkbox"] + label:before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #000000;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all .12s, border-color .08s;
+}
+
+.task-item:hover input[type="checkbox"] + label:before,
+.task-item:focus input[type="checkbox"] + label:before  {
+    border-width: 2px;
+    transition: all 0.2s linear;
+}
+
+.task-item input[type="checkbox"]:checked + label:before,
+.task-item.line-through input[type="checkbox"] + label:before{
+    width: 10px;
+    border-radius: 0;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    transform: translateY(-50%) rotate(45deg);
+    margin-top: -5px;
+    left: 6px;
+}
+
+.task-item input {
+    display: none;
+}
+
+.line-through{
+    text-decoration: line-through;
+}
