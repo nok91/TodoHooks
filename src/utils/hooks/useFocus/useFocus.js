@@ -1,15 +1,16 @@
-import { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import { useEffect } from 'react';
+import  Proptypes from 'prop-types';
 
-const propTypes = {};
-const defaultProps = {};
+const propTypes = {
+    el: Proptypes.element,
+    className: Proptypes
+};
+const defaultProps = {
+    el: document.querySelector('body'),
+    className: "focusStylesOn"
+};
 
-const UseFocus = (props) => {
-    const config = {
-        el: document.querySelector('body'),
-        className: "focusStylesOn"
-    };
-
+const useFocus = () => {
     useEffect(() => {
         window.addEventListener('mousedown', keyMouseDown);
         window.addEventListener('keydown', keyDownHandler);
@@ -32,15 +33,15 @@ const UseFocus = (props) => {
 
     const toggleClass = (status) => {
         if(status) {
-            config.el.classList.remove(config.className);
+            defaultProps.el.classList.remove(defaultProps.className);
         } else {
-            config.el.classList.add(config.className);
+            defaultProps.el.classList.add(defaultProps.className);
         }
     }
 };
 
-UseFocus.displayName = 'UseFocus';
-UseFocus.propTypes = propTypes;
-UseFocus.defaultProps = defaultProps;
+useFocus.displayName = 'useFocus';
+useFocus.propTypes = propTypes;
+useFocus.defaultProps = defaultProps;
 
-export default UseFocus;
+export default useFocus;
