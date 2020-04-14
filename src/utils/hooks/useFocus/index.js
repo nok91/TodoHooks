@@ -1,6 +1,4 @@
-import './styles/index.css'
+import './styles/index.css';
 import useFocus from './useFocus';
 
-export {
-    useFocus
-};
+export { useFocus };

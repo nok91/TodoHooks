@@ -16,9 +16,9 @@ const defaultProps = {
 const TaskItem = React.memo(({ item, idx, eventsHandler }) => {
     return (
         <div
-            className={`task-item ${ item.completed ? ' line-through ' : '' }`}
+            className={`task-item ${item.completed ? ' line-through ' : ''}`}
             onClick={(event) => eventsHandler({ event, idx })}
-            onKeyDown={(event) => eventsHandler({ event, idx })}  
+            onKeyDown={(event) => eventsHandler({ event, idx })}
             aria-label={item.text}
             tabIndex="0"
             role="checkbox"
@@ -26,11 +26,7 @@ const TaskItem = React.memo(({ item, idx, eventsHandler }) => {
             id={`chk${idx}-label`}
         >
             <input type="checkbox" tabIndex="-1" aria-hidden="true" />
-            <label    
-                htmlFor={`chk${idx}-label`}
-                tabIndex="-1"
-                aria-hidden="true"
-            >
+            <label htmlFor={`chk${idx}-label`} tabIndex="-1" aria-hidden="true">
                 {item.text}
             </label>
         </div>

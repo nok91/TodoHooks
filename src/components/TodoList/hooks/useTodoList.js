@@ -1,20 +1,36 @@
-import { useContext } from 'react';
-import PropTypes from 'prop-types';
-import TodoListContext from '../../../context/tasks-context';
+import { useContext, useCallback } from "react";
+import PropTypes from "prop-types";
+import { GlobalContext } from "../../../context/GlobalProvider";
 
 const propTypes = {
-    initValue: PropTypes.string
+    initValue: PropTypes.string,
 };
 const defaultProps = {
-    initValue: ''
+    initValue: "",
 };
 
 const useTodoList = (initValue) => {
-    const context = useContext(TodoListContext);
-    return { context };
+    const { state, dispatch } = useContext(GlobalContext);
+
+    const onClickHandler = useCallback(
+        ({ event, idx }) => {
+            if (event.detail || event.key === 13) {
+                dispatch({
+                    type: "TICK_TEXT",
+                    idx,
+                });
+            }
+        },
+        [dispatch]
+    );
+
+    return {
+        onClickHandler,
+        state,
+    };
 };
 
-useTodoList.displayName = 'useTodoList';
+useTodoList.displayName = "useTodoList";
 useTodoList.defaultProps = defaultProps;
 useTodoList.propTypes = propTypes;
 

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import  Proptypes from 'prop-types';
+import Proptypes from 'prop-types';
 
 const propTypes = {
     el: Proptypes.element,
@@ -7,7 +7,7 @@ const propTypes = {
 };
 const defaultProps = {
     el: document.querySelector('body'),
-    className: "focusStylesOn"
+    className: 'focusStylesOn'
 };
 
 const useFocus = () => {
@@ -23,21 +23,21 @@ const useFocus = () => {
 
     const keyMouseDown = () => {
         toggleClass(true);
-    }
+    };
 
     const keyDownHandler = (event) => {
         if (event.keyCode === 9) {
             toggleClass(false);
         }
-    }
+    };
 
     const toggleClass = (status) => {
-        if(status) {
+        if (status) {
             defaultProps.el.classList.remove(defaultProps.className);
         } else {
             defaultProps.el.classList.add(defaultProps.className);
         }
-    }
+    };
 };
 
 useFocus.displayName = 'useFocus';

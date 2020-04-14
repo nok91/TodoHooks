@@ -1,6 +1,4 @@
-import './styles/index.css'
+import './styles/index.css';
 import TaskItem from './TaskItem';
 
-export {
-    TaskItem
-};
+export { TaskItem };

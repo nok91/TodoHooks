@@ -2,15 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import GlobalState from './context/GlobalContext';
+import GlobalProvider from './context/GlobalProvider';
 import { TodoList } from './components';
 
 ReactDOM.render(
-  <GlobalState>
-    <TodoList />
-  </GlobalState>
-  ,
-  document.getElementById('root')
+    <GlobalProvider>
+        <TodoList />
+    </GlobalProvider>,
+    document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change

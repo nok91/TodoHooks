@@ -1,5 +1,3 @@
 import { useCountRenders } from './useCountRenders';
 
-export {
-    useCountRenders
-};
+export { useCountRenders };
