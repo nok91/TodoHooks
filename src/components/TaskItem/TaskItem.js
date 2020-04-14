@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useCountRenders } from '../../utils';
 
 const propTypes = {
     item: PropTypes.shape({
