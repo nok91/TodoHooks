@@ -18,7 +18,6 @@ const useTodoList = (initValue) => {
         await dispatch({
             type: 'GET_TASKS'
         });
-        console.log('useTodoList/getState => ', state);
     };
     
     useEffect(() => {

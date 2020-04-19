@@ -6,7 +6,7 @@ import { useFocus, useCountRenders } from '../../utils';
 
 const TodoList = React.memo(() => {
     const { onClickHandler, state } = useTodoList('');
-    const { tasks } = state;
+    const { tasks = [] } = state;
 
     console.log('TodoList/getState => ', state);
 
@@ -29,6 +29,8 @@ const TodoList = React.memo(() => {
             eventsHandler={eventsHandler}
         />
     );
+
+    console.log('tasks ==> ', tasks);
 
     return (
         <div className="todo-list__container wrapper" id="root">

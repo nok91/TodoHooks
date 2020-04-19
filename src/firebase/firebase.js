@@ -13,15 +13,18 @@ firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 const db = firebase.firestore();
 
-export const addTask = (task) => {
-    return db.collection('tasks').add({
-        ...task
+export const addTask = async (task) => {
+
+    const tasks = await db.collection('tasks').add({
+        ...task,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
     });
+    return tasks;
 };
 
 export const getTasks = async () => {
-    // .where('userId', '==', 'ujUrOjDcV16F')
-    return await db.collection('tasks').get();
+    const snapshot = await db.collection('tasks').orderBy("createdAt", "desc").get();
+    return snapshot.docs.map(doc => doc.data());
 };
 
 export const updateTask = (taskId) => {
