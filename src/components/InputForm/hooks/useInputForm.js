@@ -1,12 +1,13 @@
-import { useContext, useState } from "react";
-import PropTypes from "prop-types";
-import { GlobalContext } from "../../../context/GlobalProvider";
+import { useContext, useState } from 'react';
+import PropTypes from 'prop-types';
+import { GlobalContext } from '../../../context/GlobalProvider';
+import { addTask } from '../../../firebase/firebase';
 
 const propTypes = {
-    initValue: PropTypes.string,
+    initValue: PropTypes.string
 };
 const defaultProps = {
-    initValue: "",
+    initValue: ''
 };
 
 const useInputForm = (initValue) => {
@@ -15,11 +16,18 @@ const useInputForm = (initValue) => {
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        dispatch({
-            type: "ADD_TASK",
+        addTask({
             task: getText,
+            roomId: '282543',
+            completed: false,
+            userId: 'ujUrOjDcV16F'
         });
-        setText("");
+
+        // dispatch({
+        //     type: 'ADD_TASK',
+        //     task: getText
+        // });
+        setText('');
     };
 
     const onChangeHandler = (e) => {
@@ -30,7 +38,7 @@ const useInputForm = (initValue) => {
     return { onSubmitHandler, onChangeHandler, getText };
 };
 
-useInputForm.displayName = "useInputForm";
+useInputForm.displayName = 'useInputForm';
 useInputForm.propTypes = propTypes;
 useInputForm.defaultProps = defaultProps;
 

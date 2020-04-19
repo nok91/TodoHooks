@@ -1,19 +1,20 @@
-import React, { useCallback } from "react";
-import { TaskItem } from "../TaskItem";
-import { useTodoList } from "./hooks";
-import { InputForm } from "../InputForm";
-import { useFocus } from "../../utils";
-import firebase from "../../firebase";
+import React, { useCallback, useEffect } from 'react';
+import { TaskItem } from '../TaskItem';
+import { useTodoList } from './hooks';
+import { InputForm } from '../InputForm';
+import { useFocus, useCountRenders } from '../../utils';
 
 const TodoList = React.memo(() => {
-    const { onClickHandler, state } = useTodoList("");
+    const { onClickHandler, getTasks, state } = useTodoList('');
+    const { tasks } = state;
 
     useFocus();
 
-    firebase.firestore().collection("time").add({
-        title: "Test",
-        time_seconds: 45,
-    });
+    useEffect(() => {
+        getTasks();
+    }, []);
+
+    useCountRenders('TodoList');
 
     const eventsHandler = useCallback(
         (props) => {
@@ -41,12 +42,12 @@ const TodoList = React.memo(() => {
                 role="group"
                 aria-labelledby="id-group-label"
             >
-                {state.tasks.map(renderList)}
+                {tasks ? tasks.map(renderList) : ':( No Tasks'}
             </div>
         </div>
     );
 });
 
-TodoList.displayName = "TodoList";
+TodoList.displayName = 'TodoList';
 
 export default TodoList;

@@ -1,12 +1,12 @@
-import { useContext, useCallback } from "react";
-import PropTypes from "prop-types";
-import { GlobalContext } from "../../../context/GlobalProvider";
+import { useContext, useCallback } from 'react';
+import PropTypes from 'prop-types';
+import { GlobalContext } from '../../../context/GlobalProvider';
 
 const propTypes = {
-    initValue: PropTypes.string,
+    initValue: PropTypes.string
 };
 const defaultProps = {
-    initValue: "",
+    initValue: ''
 };
 
 const useTodoList = (initValue) => {
@@ -15,22 +15,31 @@ const useTodoList = (initValue) => {
     const onClickHandler = useCallback(
         ({ event, idx }) => {
             if (event.detail || event.key === 13) {
+                console.log('onClickHandler =>');
+
                 dispatch({
-                    type: "TICK_TEXT",
-                    idx,
+                    type: 'TICK_TEXT',
+                    id: idx
                 });
             }
         },
         [dispatch]
     );
 
+    const getTasks = async () => {
+        await dispatch({
+            type: 'GET_TASKS'
+        });
+    };
+
     return {
         onClickHandler,
-        state,
+        getTasks,
+        state
     };
 };
 
-useTodoList.displayName = "useTodoList";
+useTodoList.displayName = 'useTodoList';
 useTodoList.defaultProps = defaultProps;
 useTodoList.propTypes = propTypes;
 
