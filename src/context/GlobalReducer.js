@@ -8,7 +8,8 @@ export async function globalReducer(state, action) {
     switch (action.type) {
         case 'GET_TASKS': {
             const tasks = await getTasks();
-            return { tasks };
+            console.log('GET_TASKS ', tasks);
+            return { tasks: action.payload };
         }
         case 'ADD_TASK': {
             await addTask(action.payload);

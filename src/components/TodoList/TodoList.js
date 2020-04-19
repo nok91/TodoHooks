@@ -2,18 +2,12 @@ import React, { useCallback } from 'react';
 import { TaskItem } from '../TaskItem';
 import { useTodoList } from './hooks';
 import { InputForm } from '../InputForm';
-import { useFocus, useCountRenders } from '../../utils';
+import { useFocus } from '../../utils';
 
 const TodoList = React.memo(() => {
     const { onClickHandler, state } = useTodoList('');
     const { tasks = [] } = state;
-
-    console.log('TodoList/getState => ', state);
-
     useFocus();
-
-    useCountRenders('TodoList');
-
     const eventsHandler = useCallback(
         (props) => {
             onClickHandler(props);
@@ -29,8 +23,6 @@ const TodoList = React.memo(() => {
             eventsHandler={eventsHandler}
         />
     );
-
-    console.log('tasks ==> ', tasks);
 
     return (
         <div className="todo-list__container wrapper" id="root">

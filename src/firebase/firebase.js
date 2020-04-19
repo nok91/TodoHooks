@@ -22,7 +22,22 @@ export const addTask = async (task) => {
     return tasks;
 };
 
+export const onSnapshotTasks = async () => {
+    return new Promise((resolve, reject) => {
+        db.collection('tasks').onSnapshot((snapshot) => {
+            const tasksData = [];
+            snapshot.forEach( doc => tasksData.push(({ ...doc.data(), id: doc.id })));
+            console.log('snapshot => ', tasksData)
+            resolve(tasksData); 
+        });
+    })
+}
+
 export const getTasks = async () => {
+    // return await db.collection('tasks').onSnapshot((snapshot) => {
+    //     const tasksData = [];
+    //     snapshot.forEach( doc => tasksData.push(({ ...doc.data(), id: doc.id })));
+    // });
     const snapshot = await db.collection('tasks').orderBy("createdAt", "desc").get();
     return snapshot.docs.map(doc => doc.data());
 };
