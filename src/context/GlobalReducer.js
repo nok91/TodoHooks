@@ -7,29 +7,22 @@ export const initialState = {
 export async function globalReducer(state, action) {
     switch (action.type) {
         case 'GET_TASKS': {
-            const el = await getTasks();
-            const allTasks = el.docs.map((task) => ({
-                ...task.data(),
-                taskId: task.id
-            }));
-
-            return {
-                ...state,
-                tasks: [...state.tasks, ...allTasks]
-            };
+            const tasks = await getTasks();
+            return { tasks };
+        }
+        case 'ADD_TASK': {
+            await addTask(action.payload);
+            const tasks = await getTasks();
+            return { tasks };
         }
         case 'TICK_TEXT': {
             // updateTask
-
             console.log('TICK_TEXT => INIT', action.id);
-            const el = await updateTask(action.id);
-            const allTasks = el.docs.map((task) => ({
-                ...task.data(),
-                taskId: task.id
-            }));
-
-            console.log('TICK_TEXT => ', allTasks);
-
+            // const el = await updateTask(action.id);
+            // const allTasks = el.docs.map((task) => ({
+            //     ...task.data(),
+            //     taskId: task.id
+            // }));
             const computeTasks = state.tasks.map((item, idx) => {
                 return idx === action.idx
                     ? { ...item, completed: !item.completed }

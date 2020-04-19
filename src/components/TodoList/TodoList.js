@@ -1,18 +1,16 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback } from 'react';
 import { TaskItem } from '../TaskItem';
 import { useTodoList } from './hooks';
 import { InputForm } from '../InputForm';
 import { useFocus, useCountRenders } from '../../utils';
 
 const TodoList = React.memo(() => {
-    const { onClickHandler, getTasks, state } = useTodoList('');
+    const { onClickHandler, state } = useTodoList('');
     const { tasks } = state;
 
-    useFocus();
+    console.log('TodoList/getState => ', state);
 
-    useEffect(() => {
-        getTasks();
-    }, []);
+    useFocus();
 
     useCountRenders('TodoList');
 

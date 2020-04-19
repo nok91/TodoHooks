@@ -3,7 +3,7 @@ import { useInputForm } from './hooks';
 
 const InputForm = () => {
     const inputRef = useRef();
-    const { onSubmitHandler, onChangeHandler, getText } = useInputForm('');
+    const { onSubmitHandler, onChangeHandler, getInputText } = useInputForm('');
 
     return (
         <div className="input-form__container">
@@ -11,7 +11,7 @@ const InputForm = () => {
                 <input
                     type="text"
                     ref={inputRef}
-                    value={getText}
+                    value={getInputText}
                     onChange={onChangeHandler}
                     autoComplete="off"
                     aria-label="Add Task"

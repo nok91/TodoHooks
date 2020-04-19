@@ -1,4 +1,4 @@
-import { useContext, useCallback } from 'react';
+import { useContext, useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { GlobalContext } from '../../../context/GlobalProvider';
 
@@ -9,8 +9,21 @@ const defaultProps = {
     initValue: ''
 };
 
+
+
 const useTodoList = (initValue) => {
     const { state, dispatch } = useContext(GlobalContext);
+
+    const getTasks = async () => {
+        await dispatch({
+            type: 'GET_TASKS'
+        });
+        console.log('useTodoList/getState => ', state);
+    };
+    
+    useEffect(() => {
+        getTasks();
+    }, []);
 
     const onClickHandler = useCallback(
         ({ event, idx }) => {
@@ -26,15 +39,10 @@ const useTodoList = (initValue) => {
         [dispatch]
     );
 
-    const getTasks = async () => {
-        await dispatch({
-            type: 'GET_TASKS'
-        });
-    };
 
     return {
         onClickHandler,
-        getTasks,
+        dispatch,
         state
     };
 };
